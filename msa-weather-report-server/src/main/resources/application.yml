@@ -1,0 +1,11 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+spring:
+  application:
+    name: weather-report
+  thymeleaf:
+    cache: false
+server:
+  port: 8084
