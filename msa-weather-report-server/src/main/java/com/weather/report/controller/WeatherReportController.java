@@ -1,6 +1,6 @@
 package com.weather.report.controller;
 
-import com.weather.report.client.CityClient;
+import com.weather.report.client.DataClient;
 import com.weather.report.service.WeatherReportService;
 import com.weather.report.vo.City;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +21,7 @@ public class WeatherReportController {
     @Autowired
     private WeatherReportService weatherReportService;
     @Autowired
-    private CityClient cityClient;
+    private DataClient dataClient;
 
     @GetMapping("/cityId/{cityId}")
     public ModelAndView getReportByCityId(@PathVariable("cityId") String cityId, Model model) throws Exception {
@@ -32,7 +31,7 @@ public class WeatherReportController {
         List<City> cityList = null;
 
         try {
-            cityList = cityClient.listCity();
+            cityList = dataClient.listCity();
 
         } catch (Exception e) {
             //log.error("Exception", e);

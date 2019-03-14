@@ -1,0 +1,14 @@
+server:
+  port: 10010
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+spring:
+  application:
+    name: weather-gateway
+zuul:
+  #prefix: /api # 路由路径前缀
+  routes:
+      weather-city: /city/**
+      weather-data: /data/**
