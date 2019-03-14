@@ -7,3 +7,4 @@ spring:
     name: weather-collection
 server:
   port: 8082
+

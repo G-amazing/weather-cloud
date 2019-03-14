@@ -1,5 +1,6 @@
 package com.weather.report.controller;
 
+import com.weather.report.client.CityClient;
 import com.weather.report.service.WeatherReportService;
 import com.weather.report.vo.City;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,8 @@ public class WeatherReportController {
 
     @Autowired
     private WeatherReportService weatherReportService;
+    @Autowired
+    private CityClient cityClient;
 
     @GetMapping("/cityId/{cityId}")
     public ModelAndView getReportByCityId(@PathVariable("cityId") String cityId, Model model) throws Exception {
@@ -29,12 +32,7 @@ public class WeatherReportController {
         List<City> cityList = null;
 
         try {
-            // TODO: 2019/3/12 改为由城市数据API微服务来提供数据
-            cityList = new ArrayList<>();
-            City city = new City();
-            city.setCityId("101280101");
-            city.setCityName("上海");
-            cityList.add(city);
+            cityList = cityClient.listCity();
 
         } catch (Exception e) {
             //log.error("Exception", e);

@@ -1,5 +1,6 @@
 package com.weather.collection.job;
 
+import com.weather.collection.client.CityClient;
 import com.weather.collection.service.WeatherCollectionService;
 import com.weather.collection.vo.City;
 import lombok.extern.slf4j.Slf4j;
@@ -12,24 +13,20 @@ import java.util.List;
 
 @Slf4j
 public class WeatherDataSyncJob extends QuartzJobBean {
-
+    @Autowired
+    private CityClient cityClient;
     @Autowired
     private WeatherCollectionService weatherCollectionService;
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         log.info("Weather Data Sync Job Start!");
-        // 获取城市ID列表
 
         List<City> cityList = null;
 
         try {
-            // TODO: 2019/3/12 改为由城市数据API微服务来提供数据
-            cityList = new ArrayList<>();
-            City city = new City();
-            city.setCityId("101280101");
-            cityList.add(city);
-
+            // 获取城市ID列表
+            cityList = cityClient.listCity();
         } catch (Exception e) {
             log.error("Exception", e);
         }
