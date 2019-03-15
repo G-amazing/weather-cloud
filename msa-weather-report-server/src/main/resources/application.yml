@@ -9,4 +9,7 @@ spring:
     cache: false
 server:
   port: 8084
+feign:
+  hystrix:
+    enabled: true
 

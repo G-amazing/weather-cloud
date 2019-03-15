@@ -1,5 +1,6 @@
 package com.weather.report.client;
 
+import com.weather.report.client.impl.DataClientFallback;
 import com.weather.report.vo.City;
 import com.weather.report.vo.WeatherResponse;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
-@FeignClient("weather-gateway")
+@FeignClient(name = "weather-gateway", fallback = DataClientFallback.class)
 public interface DataClient {
 
     /**
