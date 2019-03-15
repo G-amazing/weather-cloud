@@ -16,7 +16,7 @@ public class WeatherCollectionServiceImpl implements WeatherCollectionService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    private static final long TIME_OUT = 1800L; //redis超时时间为30分钟
+    private static final long TIME_OUT = 10800L; //redis超时时间为3小时分钟
     private static final String WEATHER_URI = "http://wthrcdn.etouch.cn/weather_mini?";
 
     /**
